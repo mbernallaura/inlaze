@@ -1,4 +1,5 @@
-import { Genres, Search } from "@/components/landing";
+import { Cards, Genres, Search } from "@/components/landing";
+
 
 
 const LandingPage = () => {
@@ -12,8 +13,8 @@ const LandingPage = () => {
                     <Search/>
                     <Genres/>
                 </div>
-                <div className="w-4/5">
-                    panel
+                <div className="w-4/5 p-8">
+                    <Cards/>
                 </div>
             </div>
         </div>
