@@ -21,7 +21,7 @@ const imgAuth = [
     }
 ];
 
-const Auth = () => {
+const AuthPage = () => {
     const [optionAuth, setOptionAuth] = useState('login');
     const authInfo = imgAuth.find(item => item.type === optionAuth);
     
@@ -58,4 +58,4 @@ const Auth = () => {
 
 }
 
-export default Auth;
+export default AuthPage;
