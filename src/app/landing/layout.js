@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/landing";
 
+
 export default function LandingLayout({ children }) {
     return (
         <html lang="en">

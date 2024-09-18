@@ -1,3 +1,3 @@
 export * from './Search';
-export * from './Navbar';
+export {default as Navbar} from './Navbar';
 export * from './Genres';

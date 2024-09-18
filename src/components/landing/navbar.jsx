@@ -5,7 +5,7 @@ const navigation = [
     {name: 'Favorites', src:'#'}
 ]
 
-export const Navbar = () => {
+const Navbar = () => {
     return (
         <nav className="flex justify-between py-4 px-24 items-center text-white bg-black">
             <div className="flex items-center gap-20">
@@ -24,3 +24,5 @@ export const Navbar = () => {
         </nav>
     )
 }
+
+export default Navbar;
