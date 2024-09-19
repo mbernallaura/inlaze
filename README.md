@@ -2,7 +2,7 @@
 Para correr la app desde el despliegue puede utlizar el siguiente link, se desplego en vercel
 
 ```bash
-https://inlaze-xi.vercel.app/
+<https://inlaze-xi.vercel.app/>
 ```
 
 Para correr la app en ambiente de desarrollo debera hacer los siguientes pasos:
