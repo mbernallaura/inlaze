@@ -1,13 +1,12 @@
 import Image from "next/image";
 
-export const Cards = () => {
+export const Cards = ({title, date, img}) => {
     return (
         <div className="flex flex-col gap-4 text-white">
-            <label>Popular</label>
-            <div className="flex flex-col h-72 w-48 rounded bg-yellow">
+            <div className="flex flex-col h-80 w-48 rounded bg-yellow">
                 <div className="relative h-3/5 overflow-hidden">
                     <Image 
-                        src={'/images/login/imgLogin.png'} 
+                        src={img} 
                         layout="fill" 
                         objectFit="cover" 
                         alt="Login Image"
@@ -15,8 +14,8 @@ export const Cards = () => {
                     />
                 </div>
                 <div className="flex flex-col p-2">
-                    <label className="text-lg">Shrek 5</label>
-                    <label className="text-sm">Fecha</label>
+                    <label className="text-base">{ title }</label>
+                    <label className="text-sm">{ date }</label>
                     <div className="flex justify-center mt-2 gap-6 ">
                         <div className="flex flex-col">
                             <label className="text-xs">Rating</label>

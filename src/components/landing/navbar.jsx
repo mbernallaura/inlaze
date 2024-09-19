@@ -7,7 +7,7 @@ const navigation = [
 
 export const Navbar = () => {
     return (
-        <nav className="flex justify-between py-4 px-24 items-center text-white bg-black">
+        <nav className="flex justify-between w-full py-4 px-24 items-center fixed z-10 text-white bg-black">
             <div className="flex items-center gap-20">
                 <Image src={'/images/landing/logo.png'} width={150} height={150}/>
                 <ul className="flex gap-10">
