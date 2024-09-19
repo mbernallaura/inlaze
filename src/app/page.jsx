@@ -27,6 +27,8 @@ const AuthPage = () => {
     
     
     const handleOptionAuth = (option) =>{
+        console.log(option);
+        
         setOptionAuth(option);
     }
 
@@ -47,8 +49,8 @@ const AuthPage = () => {
                 </div>
 
                 <div className="flex flex-col my-20 mx-36 m h-3/5">
-                    { optionAuth === 'signUp' && ( <SignUp/> ) }
-                    { optionAuth === 'login' && ( <Login/> ) }
+                    { optionAuth === 'signUp' && ( <SignUp key="signUp"/> ) }
+                    { optionAuth === 'login' && ( <Login key="login"/> ) }
                     <label className="flex justify-center">For any questions, reach out to support@Quickbetdmovies.com</label>
                 </div>
             </div>
