@@ -2,6 +2,7 @@
 import { Cards, Genres, Search } from "@/components/landing";
 import { getPopularMovies } from "@/lib/APICalls";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const LandingPage = () => {
@@ -10,7 +11,7 @@ const LandingPage = () => {
     const [popularMovies, setPopularMovies] = useState([]);
     const firstMovie = popularMovies[0] || {};
     const remainingMovies = popularMovies.slice(1);
-
+    const router = useRouter();
 
     useEffect(() => {
         getPopularMovies()
@@ -18,12 +19,18 @@ const LandingPage = () => {
                 setPopularMovies(data);
             })
             .catch(error => {
-                console.error("Error al cargar datos desde Airtable:", error);
+                console.error("Error al cargar datos desde TMBD:", error);
                 setPopularMovies([]); 
         });
     }, [])
     
-    getPopularMovies();
+    const handleSelectMovie = (movie) =>{
+        router.push(`/landing/${movie.id}`);
+        console.log(movie.title);
+        return {
+            movie
+        }
+    }
 
     return (
         <div className="flex flex-col h-full bg-grayLight">
@@ -65,6 +72,7 @@ const LandingPage = () => {
                                     title={popularMovie.title} 
                                     date={ popularMovie.release_date} 
                                     img={`${urlImg}${popularMovie.poster_path}`}
+                                    handle={() => handleSelectMovie(popularMovie)}
                                 />
                             ))
                         }

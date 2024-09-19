@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-export const Cards = ({title, date, img}) => {
+export const Cards = ({title, date, img, handle}) => {
     return (
         <div className="flex flex-col gap-4 text-white">
-            <div className="flex flex-col h-80 w-48 rounded bg-yellow">
+            <div className="flex flex-col h-80 w-48 rounded cursor-pointer bg-yellow" onClick={handle}>
                 <div className="relative h-3/5 overflow-hidden">
                     <Image 
                         src={img} 
