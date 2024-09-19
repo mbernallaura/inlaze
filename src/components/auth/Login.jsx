@@ -1,14 +1,17 @@
 import { useForm } from "@/hooks/useForm"
 import { checkingCredentials, startGoogleSignIn } from "@/store/auth";
-import { useDispatch } from "react-redux"
+import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const { status, errorMessage } = useSelector(state => state.auth);
     const {email, password, onInputChange} =useForm({
         email: '',
         password: ''
     })
+    const isAuthenticating = useMemo(() => status === 'checking', [status]);
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -41,8 +44,8 @@ export const Login = () => {
                     onChange={ onInputChange }
                 />
                 <div className="flex justify-between mt-20 gap-6">
-                    <button onClick={ handleGoogleSignIn } className="w-full py-4 text-white text-lg rounded-lg bg-grayLight">Google</button>
-                    <button type="submit" className="w-full py-4 text-black text-lg rounded-lg bg-yellow">Continue</button>
+                    <button disabled={ isAuthenticating } onClick={ handleGoogleSignIn } className="w-full py-4 text-white text-lg rounded-lg bg-grayLight">Google</button>
+                    <button disabled={ isAuthenticating } type="submit" className="w-full py-4 text-black text-lg rounded-lg bg-yellow">Continue</button>
                 </div>
             </form>
         </div>
