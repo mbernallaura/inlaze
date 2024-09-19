@@ -1,8 +1,8 @@
 ## Inlaze Aplicacion de peliculas
-Para correr la app desde el despliegue puede utlizar el siguiente link, se desplego en vercel
+Para correr la app desde el despliegue puede utlizar el siguiente link
 
 ```bash
-<https://inlaze-xi.vercel.app/>
+https://inlaze-xi.vercel.app/
 ```
 
 Para correr la app en ambiente de desarrollo debera hacer los siguientes pasos:
@@ -28,8 +28,8 @@ bun dev
 ```
 ## Sawgger
 
-En esta documentacion podra encontrar las peticiones que se lograron implementar en la app, puede hacer click en el siguiente enlace
+En esta documentacion podra encontrar las peticiones que se lograron implementar en la app, puede dirigirse al siguiente enlace
 
 ```bash
-[https://documenter.getpostman.com/view/30377572/2sAXqs7i2e](https://documenter.getpostman.com/view/30377572/2sAXqs7i2e)
+https://documenter.getpostman.com/view/30377572/2sAXqs7i2e
 ```
