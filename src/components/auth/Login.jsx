@@ -1,13 +1,49 @@
-import React from 'react'
+import { useForm } from "@/hooks/useForm"
+import { checkingCredentials, startGoogleSignIn } from "@/store/auth";
+import { useDispatch } from "react-redux"
+
 
 export const Login = () => {
+    const dispatch = useDispatch();
+    const {email, password, onInputChange} =useForm({
+        email: '',
+        password: ''
+    })
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        console.log({email, password});
+        dispatch(checkingCredentials());
+    }
+
+    const handleGoogleSignIn = () =>{
+        console.log('GOoogle');
+        dispatch(startGoogleSignIn());
+    }
     return (
         <div className="flex-grow">
             <label className="flex justify-center">We love having you back</label>
-            <form className="my-14">
-                <input type="text" className="w-full py-4 px-6 rounded-lg" placeholder="Email"/>
-                <input type="text" className="w-full py-4 px-6 mt-10 rounded-lg" placeholder="Password"/>
-                <button className="w-full py-4 mt-20 text-black text-lg rounded-lg bg-yellow">Continue</button>
+            <form onSubmit={ handleSubmit } className="my-14 text-black">
+                <input 
+                    type="text" 
+                    placeholder="Email"
+                    className="w-full py-4 px-6 rounded-lg" 
+                    value={ email }
+                    name='email'
+                    onChange={ onInputChange }
+                />
+                <input 
+                    type="password" 
+                    placeholder="Password"
+                    className="w-full py-4 px-6 mt-10 rounded-lg"
+                    value={ password } 
+                    name='password'
+                    onChange={ onInputChange }
+                />
+                <div className="flex justify-between mt-20 gap-6">
+                    <button onClick={ handleGoogleSignIn } className="w-full py-4 text-white text-lg rounded-lg bg-grayLight">Google</button>
+                    <button type="submit" className="w-full py-4 text-black text-lg rounded-lg bg-yellow">Continue</button>
+                </div>
             </form>
         </div>
     )
