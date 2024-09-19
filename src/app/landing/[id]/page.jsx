@@ -1,5 +1,6 @@
 'use client';
-import { getMovieSelectId } from "@/lib/APICalls"
+import Recommendations from "@/components/movieSelect/Recommendations";
+import { getMovieSelectId, getRecommedations } from "@/lib/APICalls"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
@@ -8,14 +9,24 @@ const SelectMovie = ({params}) => {
   const { id } = params
   const router = useRouter();
   const urlImgPanel = 'https://image.tmdb.org/t/p/w1280';
-  const urlImgCard = 'https://image.tmdb.org/t/p/w780';
+  const urlImgCardMain = 'https://image.tmdb.org/t/p/w780';
+  const urlImgCard = 'https://image.tmdb.org/t/p/w500';
   const [detailsMovie, setDetailsMovie] = useState({});
+  const [recommendations, setRecommendations] = useState([])
+
   useEffect(() => {
     getMovieSelectId(id).then((data)=>{
       setDetailsMovie(data);
     }).catch((error)=>{
       console.error("Error al cargar datos desde TMBD:", error);
       setDetailsMovie({})
+    });
+
+    getRecommedations(id).then((data)=>{
+      setRecommendations(data);
+    }).catch((error)=>{
+      console.error("Error al cargar datos desde TMBD:", error);
+      setRecommendations({})
     })
   }, [id])
   
@@ -25,7 +36,7 @@ const SelectMovie = ({params}) => {
 
     return (
       <div className="h-screen bg-grayLight">
-        <div className="h-3/5 mt-16 bg-yellow">
+        <div className="min-h-[60vh] mt-16 bg-yellow">
           <div 
             className="absolute top-16 left-0 w-full h-3/5 bg-cover bg-center"
             style={{ backgroundImage: `url(${urlImgPanel}${detailsMovie.backdrop_path})` }}
@@ -39,7 +50,7 @@ const SelectMovie = ({params}) => {
                   <div className="flex flex-col h-full w-1/5 pl-20 pb-10 gap-4">
                     <div className="relative h-full w-full overflow-hidden shadow-2xl">
                       <Image
-                        src={`${urlImgCard}${detailsMovie.poster_path}`} 
+                        src={`${urlImgCardMain}${detailsMovie.poster_path}`} 
                         layout="fill" 
                         objectFit="cover" 
                         alt="Login Image"
@@ -62,6 +73,20 @@ const SelectMovie = ({params}) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="p-10 text-white bg-grayLight">
+            <label className="font-bold text-lg">Recommendations</label>
+            <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+              {
+                recommendations.map((recommendation)=>(
+                  <Recommendations 
+                    key={recommendation.id} 
+                    title={recommendation.title }
+                    img={`${urlImgCard}${recommendation.poster_path}`}
+                  />
+                ))
+              }
+            </div>
         </div>
       </div>
     )

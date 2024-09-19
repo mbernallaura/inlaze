@@ -35,17 +35,6 @@ const LandingPage = () => {
     return (
         <div className="flex flex-col h-full bg-grayLight">
             <div className="h-96 mt-16 shadow-lg bg-red-300">
-                {/* <div className="relative h-full overflow-hidden shadow-xl">
-                    {firstMovie.backdrop_path && (
-                        <Image 
-                            src={`${urlImgPanel}${firstMovie.backdrop_path}`}
-                            layout="fill" 
-                            objectFit="cover"
-                            objectPosition="top left"
-                            alt="Login Image"
-                        />
-                    )}
-                </div> */}
                 <div 
                     className="absolute top-0 left-0 w-full h-1/2 bg-cover bg-center"
                     style={{ backgroundImage: `url(${urlImgPanel}${firstMovie.backdrop_path})` }}

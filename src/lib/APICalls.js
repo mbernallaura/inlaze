@@ -19,3 +19,13 @@ export const getMovieSelectId = async (movieId) => {
         throw error;
     }
 };
+
+export const getRecommedations = async (movieId) => {
+    try {
+        const { data } = await axiosBD.get(`/movie/${movieId}/recommendations`);
+        return data.results;
+    } catch (error) {
+        console.error('Error fetching recommendations:', error);
+        throw error;
+    }
+};
