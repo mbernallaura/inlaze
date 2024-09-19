@@ -1,7 +1,7 @@
 import { useForm } from "@/hooks/useForm"
 import { startCreatingWithEmailPassword } from "@/store/auth"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useMemo, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 const formData = {
     email: '',
@@ -17,6 +17,8 @@ const formValidations = {
 
 export const SignUp = () => {
     const dispatch = useDispatch();
+    const { status, errorMessage } = useSelector( state => state.auth );
+    const isCheckingAuthentication = useMemo(() => status === 'checking');
     const [submited, setSubmited] = useState(false);
     const {
         displayName ,email, password, onInputChange, formState,
@@ -66,8 +68,10 @@ export const SignUp = () => {
                     />
                     {(passwordValid && submited) && <div className="error-message text-red-400">{passwordValid}</div>}
                 </div>
-                <button type="submit" className="w-full py-4 mt-20 text-black text-lg rounded-lg bg-yellow">Register</button>
-                
+                {errorMessage && (
+                    <div className="error-message mt-6 text-red-400">{errorMessage}</div>
+                )}
+                <button disabled={ isCheckingAuthentication } type="submit" className="w-full py-4 mt-20 text-black text-lg rounded-lg bg-yellow">Register</button>
             </form>
         </div>
     )

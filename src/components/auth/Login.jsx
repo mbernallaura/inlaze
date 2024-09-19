@@ -1,5 +1,5 @@
 import { useForm } from "@/hooks/useForm"
-import { checkingCredentials, startGoogleSignIn } from "@/store/auth";
+import { startGoogleSignIn, startLoginWithEmailPassword } from "@/store/auth";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ export const Login = () => {
     const handleSubmit = (event) =>{
         event.preventDefault();
         console.log({email, password});
-        dispatch(checkingCredentials());
+        dispatch(startLoginWithEmailPassword({email, password})); 
     }
 
     const handleGoogleSignIn = () =>{
