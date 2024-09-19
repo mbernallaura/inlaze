@@ -1,6 +1,7 @@
 import { useForm } from "@/hooks/useForm"
 import { startCreatingWithEmailPassword } from "@/store/auth"
-import { useMemo, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const formData = {
@@ -17,6 +18,7 @@ const formValidations = {
 
 export const SignUp = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const { status, errorMessage } = useSelector( state => state.auth );
     const isCheckingAuthentication = useMemo(() => status === 'checking');
     const [submited, setSubmited] = useState(false);
@@ -31,6 +33,13 @@ export const SignUp = () => {
         if(!isFormValid)return;
         dispatch(startCreatingWithEmailPassword(formState));
     }
+
+    useEffect(() => {
+        if (status === 'authenticated') {
+            router.push(`/landing`);
+        }
+    }, [status, router]);
+
     return (
         <div className="flex-grow content-center">
             <label className="flex justify-center font-bold text-4xl">Register</label>
